@@ -7,27 +7,28 @@ const mySettings = {
     displayEmail: "rapidcode35@gmail.com" 
 };
 
-// Yeh code HTML mein apne aap links fit kar dega
 window.onload = function() {
-    document.getElementById("youtubeBtn").href = mySettings.youtubeLink;
-    document.getElementById("instaBtn").href = mySettings.instagramLink;
-    
-    // Email ko clickable banayega
+    const ytBtn = document.getElementById("youtubeBtn");
+    const instaBtn = document.getElementById("instaBtn");
     const emailLink = document.getElementById("displayEmail");
-    emailLink.innerText = mySettings.displayEmail;
-    emailLink.href = "mailto:" + mySettings.displayEmail;
+
+    if(ytBtn) ytBtn.href = mySettings.youtubeLink;
+    if(instaBtn) instaBtn.href = mySettings.instagramLink;
+    
+    if(emailLink) {
+        emailLink.innerText = mySettings.displayEmail;
+        emailLink.href = "mailto:" + mySettings.displayEmail;
+    }
 };
 
 // ==========================================
-// 🟢 TERE YOUTUBE VIDEOS KA DATA YAHAN AAYEGA 🟢
+// 🟢 TERE YOUTUBE VIDEOS KA DATA (13 PROJECTS)
 // ==========================================
 const projectDatabase = [
-    
     {
         id: "project-1", 
-        title: "MAGIC BU",
-        code: `
-<!DOCTYPE html>
+        title: "MAGIC BUTTON BURST",
+        code: `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,7 +46,9 @@ const projectDatabase = [
 </body>
 </html>
 
-<style>
+
+        CSS
+
 body {
     margin: 0;
     display: flex;
@@ -106,15 +109,15 @@ body {
         opacity: 0;
     }
 }
-</style>
 
 
 
 
-                            JAVA SCRIPT
+java script
 
 
-    const button = document.getElementById('magicBtn');
+
+const button = document.getElementById('magicBtn');
 
 button.addEventListener('click', function(e) {
     // 1. Decide karein kitne particles chahiye (jitne zyada, utna chaotic magic)
@@ -159,16 +162,12 @@ button.addEventListener('click', function(e) {
             particle.remove();
         }, 800); // 800ms match karna chahiye animation time se
     }
-});
-
-
-        `
+}); `
     },
-
     {
         id: "project-2",
-        title: "no means no",
-        code: ` <!DOCTYPE html>
+        title: "NO MEANS NO (DODGE)",
+        code: `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -193,13 +192,49 @@ button.addEventListener('click', function(e) {
 
     <script src="script.js"></script>
 </body>
-</html> 
+</html>
 
 
 
 
-                    CSS
+                                                        JAVA SCRIPT 
 
+
+
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+const question = document.getElementById('question');
+const message = document.getElementById('message');
+const buttonContainer = document.getElementById('button-container');
+
+// The "Dodging" logic for the No button
+noBtn.addEventListener('mouseover', () => {
+    // Calculate random position within the viewport bounds
+    const maxX = window.innerWidth - noBtn.clientWidth;
+    const maxY = window.innerHeight - noBtn.clientHeight;
+
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    // Change position to absolute so it can break out of the flexbox
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = randomX + 'px';
+    noBtn.style.top = randomY + 'px';
+});
+
+// The Success logic for the Yes button
+yesBtn.addEventListener('click', () => {
+    // Hide the question and buttons
+    question.classList.add('hidden');
+    buttonContainer.classList.add('hidden');
+    
+    // Show the success message
+    message.classList.remove('hidden');
+});
+
+
+
+                        CSS
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
@@ -296,331 +331,309 @@ button {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
-} 
+}`
+    },
+    {
+        id: "project-3", 
+        title: "LUXE ROLEX CARD",
+        code: `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE Mobile Card</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="card-container" id="luxe-card">
+        <div class="card-inner" id="card-inner">
+            
+            <div class="card-front">
+                <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="LUXE Watch" class="product-img">
+                <h2 class="brand">LUXE</h2>
+                <h3 class="product-name">Chronograph Elite</h3>
+                <p class="price">$4,999</p>
+                <button class="buy-btn" id="add-to-cart-btn">Add to Cart</button>
+            </div>
+
+            <div class="card-back">
+                <div class="success-icon">✔️</div>
+                <h2 class="success-title">Success!</h2>
+                <p class="success-msg">Your product is now in your cart section.</p>
+                <button class="back-btn" id="go-back-btn">Keep Shopping</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+                                        CSS
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* Dark premium background */
+    background: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop') center/cover no-repeat;
+    overflow: hidden; /* Prevents scrollbars on mobile */
+}
+
+/* --- 3D FLIP MECHANICS --- */
+.card-container {
+    /* Mobile oriented width */
+    width: 85vw; 
+    max-width: 340px;
+    height: 520px;
+    perspective: 1000px; /* Gives the 3D depth */
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+/* This class triggers the flip */
+.card-inner.is-flipped {
+    transform: rotateY(180deg);
+}
+
+/* --- GLASSMORPHISM FOR BOTH SIDES --- */
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hides the back when looking at front */
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* --- FRONT CARD STYLES --- */
+.card-front::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(
+        800px circle at var(--x, 50%) var(--y, 50%), 
+        rgba(255, 255, 255, 0.15), 
+        transparent 40%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.product-img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    z-index: 2;
+}
+
+.brand { font-size: 14px; letter-spacing: 4px; color: #ccc; margin-bottom: 5px; z-index: 2;}
+.product-name { font-size: 26px; font-weight: 300; margin-bottom: 15px; z-index: 2;}
+.price { font-size: 22px; font-weight: bold; margin-bottom: 30px; z-index: 2;}
+
+.buy-btn, .back-btn {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 30px;
+    background: #fff;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 2;
+    width: 80%;
+}
+
+.buy-btn:hover, .back-btn:hover {
+    background: #e0e0e0;
+    transform: scale(1.05);
+}
+
+/* --- BACK CARD STYLES --- */
+.card-back {
+    transform: rotateY(180deg);
+}
+
+.success-icon {
+    font-size: 60px;
+    background: #4CAF50;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+}
+
+.success-title { font-size: 32px; margin-bottom: 10px; }
+.success-msg { font-size: 16px; color: #ccc; margin-bottom: 40px; line-height: 1.5; }
+
+
 
 
 
                 JAVA SCRIPT
+                
+                
+const container = document.getElementById('luxe-card');
+const cardInner = document.getElementById('card-inner');
+const cardFront = document.querySelector('.card-front');
+const addBtn = document.getElementById('add-to-cart-btn');
+const backBtn = document.getElementById('go-back-btn');
 
-const yesBtn = document.getElementById('yesBtn');
-const noBtn = document.getElementById('noBtn');
-const question = document.getElementById('question');
-const message = document.getElementById('message');
-const buttonContainer = document.getElementById('button-container');
-
-// The "Dodging" logic for the No button
-noBtn.addEventListener('mouseover', () => {
-    // Calculate random position within the viewport bounds
-    const maxX = window.innerWidth - noBtn.clientWidth;
-    const maxY = window.innerHeight - noBtn.clientHeight;
-
-    const randomX = Math.floor(Math.random() * maxX);
-    const randomY = Math.floor(Math.random() * maxY);
-
-    // Change position to absolute so it can break out of the flexbox
-    noBtn.style.position = 'absolute';
-    noBtn.style.left = randomX + 'px';
-    noBtn.style.top = randomY + 'px';
+// --- 3D FLIP LOGIC ---
+// Flip to back when Add to Cart is clicked
+addBtn.addEventListener('click', () => {
+    cardInner.classList.add('is-flipped');
 });
 
-// The Success logic for the Yes button
-yesBtn.addEventListener('click', () => {
-    // Hide the question and buttons
-    question.classList.add('hidden');
-    buttonContainer.classList.add('hidden');
-    
-    // Show the success message
-    message.classList.remove('hidden');
-});                
-        `
-    } 
-];
+// Flip to front when Keep Shopping is clicked
+backBtn.addEventListener('click', () => {
+    cardInner.classList.remove('is-flipped');
+});
 
+// --- DYNAMIC SHINE LOGIC (On Front Card) ---
+container.addEventListener('mousemove', (e) => {
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
 
+    cardFront.style.setProperty('--x', `${x}px`);
+    cardFront.style.setProperty('--y', `${y}px`);
+});
 
-
-
-{
-        id: "project-3", 
-        title: "MAGIC BU",
-        code: `
-<div class="product-card">
-    <img src="watch.jpg" alt="Rolex">
-    <h3>LUXE Premium Watch</h3>
-    <button>Add to Cart</button>
-</div>
-
-<style>
-/* CSS Code */
-.product-card {
-    border: 1px solid #ddd;
-    text-align: center;
-}
-</style>
-        `
+// Reset shine when mouse leaves
+container.addEventListener('mouseleave', () => {
+    cardFront.style.setProperty('--x', `50%`);
+    cardFront.style.setProperty('--y', `50%`);
+});`
     },
-
-
-{
+    {
         id: "project-4", 
-        title: "MAGIC BU",
-        code: `
-<div class="product-card">
-    <img src="watch.jpg" alt="Rolex">
-    <h3>LUXE Premium Watch</h3>
-    <button>Add to Cart</button>
-</div>
-
-<style>
-/* CSS Code */
-.product-card {
-    border: 1px solid #ddd;
-    text-align: center;
-}
-</style>
-        `
+        title: "NEON GLOW TEXT",
+        code: `<h1 class="neon">GLOW</h1><style>.neon { text-shadow: 0 0 10px #fff, 0 0 20px #03e9f4; }</style>`
     },
-
-
-
-
-{
+    {
         id: "project-5", 
-        title: "MAGIC BU",
-        code: `
-<div class="product-card">
-    <img src="watch.jpg" alt="Rolex">
-    <h3>LUXE Premium Watch</h3>
-    <button>Add to Cart</button>
-</div>
-
-<style>
-/* CSS Code */
-.product-card {
-    border: 1px solid #ddd;
-    text-align: center;
-}
-</style>
-        `
+        title: "SMOOTH SCROLL NAV",
+        code: `<nav><ul><li>Home</li><li>About</li></ul></nav>`
     },
-
-
-
-
-{
+    {
         id: "project-6", 
-        title: "MAGIC BU",
-        code: `
-<div class="product-card">
-    <img src="watch.jpg" alt="Rolex">
-    <h3>LUXE Premium Watch</h3>
-    <button>Add to Cart</button>
-</div>
-
-<style>
-/* CSS Code */
-.product-card {
-    border: 1px solid #ddd;
-    text-align: center;
-}
-</style>
-        `
+        title: "GLASSMORPHISM CARD",
+        code: `<div class="glass">Content</div><style>.glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); }</style>`
     },
-
-
-
-
-{
+    {
         id: "project-7", 
-        title: "MAGIC BU",
-        code: `
-<div class="product-card">
-    <img src="watch.jpg" alt="Rolex">
-    <h3>LUXE Premium Watch</h3>
-    <button>Add to Cart</button>
-</div>
-
-<style>
-/* CSS Code */
-.product-card {
-    border: 1px solid #ddd;
-    text-align: center;
-}
-</style>
-        `
+        title: "3D BUTTON HOVER",
+        code: `<button class="btn-3d">Click</button><style>.btn-3d { transform: perspective(1px) translateZ(0); }</style>`
     },
-
-
-
-
-{
+    {
         id: "project-8", 
-        title: "MAGIC BU",
-        code: `
-<div class="product-card">
-    <img src="watch.jpg" alt="Rolex">
-    <h3>LUXE Premium Watch</h3>
-    <button>Add to Cart</button>
-</div>
-
-<style>
-/* CSS Code */
-.product-card {
-    border: 1px solid #ddd;
-    text-align: center;
-}
-</style>
-        `
+        title: "DARK MODE TOGGLE",
+        code: `<input type="checkbox" id="darkToggle"><script>document.body.classList.toggle('dark-mode')</script>`
     },
-
-
-
-
-{
+    {
         id: "project-9", 
-        title: "MAGIC BU",
-        code: `
-<div class="product-card">
-    <img src="watch.jpg" alt="Rolex">
-    <h3>LUXE Premium Watch</h3>
-    <button>Add to Cart</button>
-</div>
-
-<style>
-/* CSS Code */
-.product-card {
-    border: 1px solid #ddd;
-    text-align: center;
-}
-</style>
-        `
+        title: "ANIMATED LOADERS",
+        code: `<div class="loader"></div><style>@keyframes spin { 100% { transform: rotate(360deg); } }</style>`
     },
-
-
-
-
-{
+    {
         id: "project-10", 
-        title: "MAGIC BU",
-        code: `
-<div class="product-card">
-    <img src="watch.jpg" alt="Rolex">
-    <h3>LUXE Premium Watch</h3>
-    <button>Add to Cart</button>
-</div>
-
-<style>
-/* CSS Code */
-.product-card {
-    border: 1px solid #ddd;
-    text-align: center;
-}
-</style>
-        `
+        title: "IMAGE SLIDER",
+        code: `<div class="slider">Images go here</div>`
     },
-
-
-
-
-{
+    {
         id: "project-11", 
-        title: "MAGIC BU",
-        code: `
-<div class="product-card">
-    <img src="watch.jpg" alt="Rolex">
-    <h3>LUXE Premium Watch</h3>
-    <button>Add to Cart</button>
-</div>
-
-<style>
-/* CSS Code */
-.product-card {
-    border: 1px solid #ddd;
-    text-align: center;
-}
-</style>
-        `
+        title: "MODAL POPUP",
+        code: `<div id="modal" class="hidden">Popup Box</div>`
     },
-
-
-
-
-{
+    {
         id: "project-12", 
-        title: "MAGIC BU",
-        code: `
-<div class="product-card">
-    <img src="watch.jpg" alt="Rolex">
-    <h3>LUXE Premium Watch</h3>
-    <button>Add to Cart</button>
-</div>
-
-<style>
-/* CSS Code */
-.product-card {
-    border: 1px solid #ddd;
-    text-align: center;
-}
-</style>
-        `
+        title: "SOCIAL MEDIA BAR",
+        code: `<div class="social-icons">FB | IG | YT</div>`
     },
-
-
-
-{
+    {
         id: "project-13", 
-        title: "MAGIC BU",
-        code: `
-<div class="product-card">
-    <img src="watch.jpg" alt="Rolex">
-    <h3>LUXE Premium Watch</h3>
-    <button>Add to Cart</button>
-</div>
-
-<style>
-/* CSS Code */
-.product-card {
-    border: 1px solid #ddd;
-    text-align: center;
-}
-</style>
-        `
-    },
+        title: "CONTACT FORM PRO",
+        code: `<form><input type="text" placeholder="Name"><button>Send</button></form>`
+    } 
+]; // <--- Array ends here properly
 
 // ==========================================
-// 🔴 ISKE NEECHE KUCH BHI CHANGE MAT KARNA 🔴
+// 🔴 SEARCH & COPY LOGIC (DO NOT TOUCH)
 // ==========================================
 const searchInput = document.getElementById('searchInput');
 const displayArea = document.getElementById('codeDisplayArea');
 
-searchInput.addEventListener('input', function() {
-    let query = this.value.toLowerCase().trim();
+if(searchInput) {
+    searchInput.addEventListener('input', function() {
+        let query = this.value.toLowerCase().trim();
 
-    if (query === "") {
-        displayArea.innerHTML = ""; 
-        return;
-    }
+        if (query === "") {
+            displayArea.innerHTML = ""; 
+            return;
+        }
 
-    let foundProject = projectDatabase.find(project => project.id === query);
+        let foundProject = projectDatabase.find(project => project.id === query);
 
-    if (foundProject) {
-        let safeCode = foundProject.code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        displayArea.innerHTML = `
-            <div class="result-header">
-                <h3 style="color: #1e90ff;">${foundProject.title}</h3>
-                <button class="copy-btn" onclick="copyMyCode()">Copy Code</button>
-            </div>
-            <div class="code-box">
-                <pre><code id="actualCode">${safeCode}</code></pre>
-            </div>
-        `;
-    } else {
-        displayArea.innerHTML = `<p style="color: #ff4444; text-align: center; margin-top: 20px;">Project not found. Check spelling (e.g., project-1)</p>`;
-    }
-});
+        if (foundProject) {
+            let safeCode = foundProject.code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            displayArea.innerHTML = `
+                <div class="result-header">
+                    <h3 style="color: #1e90ff;">${foundProject.title}</h3>
+                    <button class="copy-btn" onclick="copyMyCode()">Copy Code</button>
+                </div>
+                <div class="code-box">
+                    <pre><code id="actualCode">${safeCode}</code></pre>
+                </div>
+            `;
+        } else {
+            displayArea.innerHTML = `<p style="color: #ff4444; text-align: center; margin-top: 20px;">Project not found. Type "project-1" to "project-13"</p>`;
+        }
+    });
+}
 
 function copyMyCode() {
-    const codeText = document.getElementById("actualCode").innerText;
+    const codeContainer = document.getElementById("actualCode");
+    if(!codeContainer) return;
+    
+    const codeText = codeContainer.innerText;
     navigator.clipboard.writeText(codeText).then(() => {
         const btn = document.querySelector(".copy-btn");
         btn.innerText = "Copied! ✅";
@@ -629,7 +642,5 @@ function copyMyCode() {
             btn.innerText = "Copy Code";
             btn.style.backgroundColor = "#1e90ff"; 
         }, 2000);
-    }).catch(err => {
-        console.error('Copy failed:', err);
     });
 }
