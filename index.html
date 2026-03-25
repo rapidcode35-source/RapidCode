@@ -10,42 +10,36 @@
 <body>
 
     <div class="mobile-app-container">
-        
         <header>
             <img src="banner.jpg" alt="RapidCode Banner" class="banner-img">
         </header>
 
         <main class="content-area">
-            
             <div class="search-section">
-                <input type="text" id="searchInput" placeholder="Search project (e.g., project-1)">
+                <input type="text" id="searchInput" placeholder="Type 'project-1' or 'project-2'...">
             </div>
 
-            <div id="codeDisplayArea"></div>
-
-            <div class="community-section">
-                <h3>Click and join our community</h3>
-                <div class="social-buttons">
-                    <a href="#" id="youtubeBtn" class="social-btn youtube" target="_blank">
-                        <i class="fa-brands fa-youtube"></i> YouTube
-                    </a>
-                    
-                    <a href="#" id="instaBtn" class="social-btn instagram" target="_blank">
-                        <i class="fa-brands fa-instagram"></i> Instagram
-                    </a>
-                </div>
-            </div>
-
+            <div id="projectResultArea"></div>
         </main>
+
+        <div class="community-section">
+            <h3>Join Our Community</h3>
+            <div class="social-buttons">
+                <a href="#" id="youtubeBtn" class="social-btn youtube" target="_blank">
+                    <i class="fa-brands fa-youtube"></i> YouTube
+                </a>
+                <a href="#" id="instaBtn" class="social-btn instagram" target="_blank">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
+            </div>
+        </div>
 
         <footer class="contact-section">
             <h3>Help & Contact</h3>
             <p>Email: <a href="#" id="displayEmail" class="highlight-email">Loading...</a></p>
         </footer>
-
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-
