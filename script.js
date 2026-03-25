@@ -20,7 +20,23 @@ const projectDatabase = [
     },
     {
         id: "project-2",
-        title: "Farewell Script Layout",
+        title: "NO MEANS NO",
+        html: `<div class="farewell-card">\n  <h2>Goodbye Seniors!</h2>\n</div>`,
+        css: `.farewell-card { background: #333; padding: 20px; }`,
+        js: `console.log("Farewell logic loaded.");`
+    },
+
+    {
+        id: "project-3",
+        title: "ROLEX PRODUCT CARD",
+        html: `<div class="farewell-card">\n  <h2>Goodbye Seniors!</h2>\n</div>`,
+        css: `.farewell-card { background: #333; padding: 20px; }`,
+        js: `console.log("Farewell logic loaded.");`
+    },
+
+    {
+        id: "project-4",
+        title: "NIKI SHOOSE",
         html: `<div class="farewell-card">\n  <h2>Goodbye Seniors!</h2>\n</div>`,
         css: `.farewell-card { background: #333; padding: 20px; }`,
         js: `console.log("Farewell logic loaded.");`
