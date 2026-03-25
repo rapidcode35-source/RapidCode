@@ -1,37 +1,33 @@
-/* style.css */
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-body { background-color: #12151c; display: flex; justify-content: center; color: #ffffff; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background-color: #0f1216; display: flex; justify-content: center; color: #ffffff; }
 
-/* Mobile Look */
-.mobile-app-container { width: 100%; max-width: 480px; background-color: #1a1e24; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.5); display: flex; flex-direction: column; }
+.mobile-app-container { width: 100%; max-width: 480px; background-color: #1a1e24; min-height: 100vh; display: flex; flex-direction: column; }
 .banner-img { width: 100%; height: auto; display: block; border-bottom: 3px solid #1e90ff; }
 .content-area { padding: 20px; flex-grow: 1; }
 
 /* Search Bar */
-.search-section { margin-bottom: 25px; }
-#searchInput { width: 100%; padding: 15px 20px; border-radius: 8px; border: 1px solid #333; background-color: #242933; color: #fff; font-size: 16px; outline: none; transition: all 0.3s ease; }
-#searchInput:focus { border-color: #ff8c00; box-shadow: 0 0 10px rgba(255, 140, 0, 0.3); }
+.search-section { margin-bottom: 20px; }
+#searchInput { width: 100%; padding: 15px; border-radius: 12px; border: 2px solid #333; background-color: #242933; color: #fff; font-size: 16px; outline: none; transition: 0.3s; }
+#searchInput:focus { border-color: #ff8c00; }
 
-/* Community & Social */
-.community-section { text-align: center; margin-top: 30px; padding: 20px; background-color: #242933; border-radius: 10px; }
-.community-section h3 { font-size: 1.1rem; margin-bottom: 15px; color: #1e90ff; }
-.social-buttons { display: flex; gap: 15px; justify-content: center; }
-.social-btn { text-decoration: none; padding: 10px 20px; border-radius: 25px; color: white; font-weight: bold; display: flex; align-items: center; gap: 8px; }
-.youtube { background-color: #ff0000; }
-.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+/* Tabs Styling */
+.tab-container { display: flex; gap: 8px; margin-top: 15px; animation: slideUp 0.3s ease; }
+.tab-btn { flex: 1; padding: 12px; border: none; background: #2c3440; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; border-bottom: 3px solid transparent; }
+.tab-btn:active { background: #1e90ff; border-bottom: 3px solid #fff; }
 
-/* Footer */
-.contact-section { background-color: #14171c; padding: 25px 20px; border-top: 2px solid #333; text-align: center; }
-.contact-section h3 { color: #ff8c00; margin-bottom: 10px; }
-.highlight-email { color: #1e90ff; font-weight: bold; }
-.contact-form { margin-top: 15px; display: flex; flex-direction: column; gap: 10px; }
-.contact-form textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #444; background-color: #1a1e24; color: white; resize: none; }
-.submit-btn { background-color: #1e90ff; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
-.submit-btn:active { background-color: #1565c0; }
+/* Code Box Area */
+.result-header { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding: 0 5px; }
+.copy-btn { background-color: #1e90ff; color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: pointer; }
+.code-box { background: #12151c; padding: 15px; border-radius: 10px; margin-top: 10px; border: 1px solid #333; }
+pre { overflow-x: auto; color: #a9ffad; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.5; }
 
-/* JavaScript Code Box & Copy Button */
-.result-header { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
-.copy-btn { background-color: #1e90ff; color: white; border: none; padding: 8px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background-color 0.3s; }
-.copy-btn:active { background-color: #1565c0; }
-.code-box { background: #1e1e1e; padding: 15px; border-radius: 8px; margin-top: 10px; }
-pre { overflow-x: auto; color: #00ff00; font-size: 14px; }
+/* Socials & Footer */
+.community-section { text-align: center; padding: 20px; background: #14171c; }
+.social-buttons { display: flex; gap: 10px; justify-content: center; margin-top: 10px; }
+.social-btn { text-decoration: none; padding: 10px 18px; border-radius: 30px; color: white; font-weight: bold; display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.youtube { background: #ff0000; }
+.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.contact-section { padding: 20px; text-align: center; border-top: 1px solid #333; font-size: 14px; }
+.highlight-email { color: #1e90ff; text-decoration: none; }
+
+@keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
