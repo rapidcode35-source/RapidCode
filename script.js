@@ -645,7 +645,7 @@ cartBtn.addEventListener('click', function() {
     <h2>Goodbye Seniors!</h2>
 </div>
         `
-    }, 
+    }
 ];
 
 // ==========================================
