@@ -1,93 +1,97 @@
 // ==========================================
-// ⚙️ TERE WEBSITE KI MASTER SETTINGS
+// ⚙️ 1. CENTRAL CONFIGURATION (Yahan se change karo)
 // ==========================================
-const mySettings = {
-    youtubeLink: "https://www.youtube.com/@RapidCode-35", 
-    instagramLink: "https://www.instagram.com/rapidcode35?igsh=dnd2Z3o5cDZldDE2", 
-    displayEmail: "rapidcode35@gmail.com" 
-};
-
-// Yeh code HTML mein apne aap links fit kar dega
-window.onload = function() {
-    document.getElementById("youtubeBtn").href = mySettings.youtubeLink;
-    document.getElementById("instaBtn").href = mySettings.instagramLink;
-    
-    // Email ko clickable banayega
-    const emailLink = document.getElementById("displayEmail");
-    emailLink.innerText = mySettings.displayEmail;
-    emailLink.href = "mailto:" + mySettings.displayEmail;
+const appConfig = {
+    youtube: "https://www.youtube.com/@RapidCode-35",
+    instagram: "https://www.instagram.com/rapidcode35?igsh=dnd2Z3o5cDZldDE2",
+    email: "rapidcode35@gmail.com"
 };
 
 // ==========================================
-// 🟢 TERE YOUTUBE VIDEOS KA DATA YAHAN AAYEGA 🟢
+// 📂 2. PROJECT DATABASE (Sabhi codes yahan ayenge)
 // ==========================================
 const projectDatabase = [
-    
     {
-        id: "project-1", 
-        title: "TAP THE MAGIC BUTTON",
-        code: `     ....HTML....
-        
-        `
+        id: "project-1",
+        title: "Magic Neon Button",
+        html: `\n<button class="neon-btn">Magic Click</button>`,
+        css: `/* CSS */\n.neon-btn {\n  color: #03e9f4;\n  border: 2px solid #03e9f4;\n  padding: 10px 20px;\n  background: transparent;\n}`,
+        js: `// JS\nconst btn = document.querySelector('.neon-btn');\nbtn.onclick = () => alert('Magic!');`
     },
-
-    
-
-
     {
         id: "project-2",
-        title: "NO means NO",
-        code: `      SORRY, CODE IS UPDATE SOON NOW YOU CONTUNUE NEXT.... UPDATE SOON.....      `
+        title: "Farewell Script Layout",
+        html: `<div class="farewell-card">\n  <h2>Goodbye Seniors!</h2>\n</div>`,
+        css: `.farewell-card { background: #333; padding: 20px; }`,
+        js: `console.log("Farewell logic loaded.");`
     }
-            
+    // Aur projects isi format mein add kar sakte ho...
 ];
 
 // ==========================================
-// 🔴 ISKE NEECHE KUCH BHI CHANGE MAT KARNA 🔴
+// 🛠️ 3. CORE LOGIC (Dont change unless needed)
 // ==========================================
+
+// Setup Links on Load
+window.onload = () => {
+    document.getElementById("youtubeBtn").href = appConfig.youtube;
+    document.getElementById("instaBtn").href = appConfig.instagram;
+    const emailLink = document.getElementById("displayEmail");
+    emailLink.innerText = appConfig.email;
+    emailLink.href = "mailto:" + appConfig.email;
+};
+
 const searchInput = document.getElementById('searchInput');
-const displayArea = document.getElementById('codeDisplayArea');
+const resultArea = document.getElementById('projectResultArea');
 
 searchInput.addEventListener('input', function() {
-    let query = this.value.toLowerCase().trim();
+    const query = this.value.toLowerCase().trim();
+    if (query === "") { resultArea.innerHTML = ""; return; }
 
-    if (query === "") {
-        displayArea.innerHTML = ""; 
-        return;
-    }
+    const project = projectDatabase.find(p => p.id === query);
 
-    let foundProject = projectDatabase.find(project => project.id === query);
-
-    if (foundProject) {
-        let safeCode = foundProject.code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        displayArea.innerHTML = `
-            <div class="result-header">
-                <h3 style="color: #1e90ff;">${foundProject.title}</h3>
-                <button class="copy-btn" onclick="copyMyCode()">Copy Code</button>
-            </div>
-            <div class="code-box">
-                <pre><code id="actualCode">${safeCode}</code></pre>
+    if (project) {
+        resultArea.innerHTML = `
+            <div style="margin-top:20px;">
+                <h2 style="color: #ff8c00; font-size: 1.2rem;">${project.title}</h2>
+                <div class="tab-container">
+                    <button class="tab-btn" onclick="renderCode('${project.id}', 'html')">HTML</button>
+                    <button class="tab-btn" onclick="renderCode('${project.id}', 'css')">CSS</button>
+                    <button class="tab-btn" onclick="renderCode('${project.id}', 'js')">JS</button>
+                </div>
+                <div id="codeContentWrapper"></div>
             </div>
         `;
     } else {
-        displayArea.innerHTML = `<p style="color: #ff4444; text-align: center; margin-top: 20px;">Project not found. Check spelling (e.g., project-1)</p>`;
+        resultArea.innerHTML = `<p style="color: #666; text-align: center; margin-top: 20px;">No project found with that ID...</p>`;
     }
 });
 
-function copyMyCode() {
-    const codeText = document.getElementById("actualCode").innerText;
-    navigator.clipboard.writeText(codeText).then(() => {
-        const btn = document.querySelector(".copy-btn");
-        btn.innerText = "Copied! ✅";
-        btn.style.backgroundColor = "#4CAF50"; 
-        setTimeout(() => {
-            btn.innerText = "Copy Code";
-            btn.style.backgroundColor = "#1e90ff"; 
-        }, 2000);
-    }).catch(err => {
-        console.error('Copy failed:', err);
-    });
+function renderCode(projectId, type) {
+    const project = projectDatabase.find(p => p.id === projectId);
+    const rawCode = project[type];
+    const safeCode = rawCode.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+    document.getElementById('codeContentWrapper').innerHTML = `
+        <div class="result-header">
+            <span style="text-transform: uppercase; color: #1e90ff; font-size: 14px;">${type}</span>
+            <button class="copy-btn" onclick="copyCode()">Copy Code</button>
+        </div>
+        <div class="code-box">
+            <pre><code id="targetCode">${safeCode}</code></pre>
+        </div>
+    `;
 }
 
-
-
+function copyCode() {
+    const code = document.getElementById("targetCode").innerText;
+    navigator.clipboard.writeText(code).then(() => {
+        const btn = document.querySelector(".copy-btn");
+        btn.innerText = "Copied! ✅";
+        btn.style.background = "#4CAF50";
+        setTimeout(() => {
+            btn.innerText = "Copy Code";
+            btn.style.background = "#1e90ff";
+        }, 2000);
+    });
+}
